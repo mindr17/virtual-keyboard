@@ -1,0 +1,82 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding-top: 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.header__description {
+  font-size: 24px;
+  text-align: center;
+}
+.input-wrapper {
+  display: flex;
+  width: 767px;
+  height: 200px;
+  font-size: 24px;
+}
+.keyboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 767px;
+  gap: 6px;
+  padding: 10px;
+  background-color: #99e2b4;
+  border-radius: 10px;
+}
+.keyboard__key {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 6px;
+  &:hover {
+    background-color: #e63946;
+    cursor: pointer;
+  }
+}
+.btn_utility {
+  background-color: rgba(blue, 0.7);
+}
+.btn {
+  transition: all 0.3s ease-out;
+  user-select: none;
+}
+.btn_visible {
+  display: flex;
+}
+.btn_pressed {
+  background-color: rgba(#e63946, 0.7);
+  border-radius: 22px;
+}
+.btn:active {
+  background-color: rgba(#e63946, 0.7);
+}
+
+.btn__char {
+  position: absolute;
+  display: flex;
+  color: #FFFFFF;
+  &._visible {
+    display: flex;
+  }
+}
+.line-wrap {
+  width: 100%;
+  height: 0;
+}

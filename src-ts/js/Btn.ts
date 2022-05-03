@@ -2,8 +2,11 @@ import Control from './Control';
 
 class Btn {
   private keyboardElem: HTMLElement;
+
   public btnObj: any;
+
   public elem: HTMLElement;
+
   public char: string;
 
   constructor(keyboardElem: HTMLElement, btnObj: Object) {
@@ -22,14 +25,12 @@ class Btn {
     if (btnObj.utility) {
       btnElement.classList.add('btn_utility');
     }
-    
     return btnElement;
   }
 
   public update(language: string, capsLock: boolean, shift: boolean) {
     this.elem.textContent = '';
     this.char = this.btnObj.key;
-    
     if (!this.btnObj.utility) {
       if (!capsLock) {
         if (language === 'en' && shift) {
@@ -59,7 +60,6 @@ class Btn {
             this.char = this.btnObj.upperCased;
           }
         } else if (language === 'ru' && !shift) {
-          
           if (this.btnObj.keyRU) {
             if (this.btnObj.keyRU.toUpperCase() !== this.btnObj.key) {
               this.char = this.btnObj.keyRU.toUpperCase();
@@ -74,8 +74,12 @@ class Btn {
         }
       }
     }
-        
-    new Control (this.elem, 'div', 'btn__char', this.char);
+    const doNothing = (...args) => {
+      args.forEach(() => {
+      });
+    };
+    const char = new Control(this.elem, 'div', 'btn__char', this.char);
+    doNothing(char);
   }
 }
 

@@ -4,9 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npx webpack serve --devtool source-map --open",
-    "dev": "npx webpack serve --devtool source-map",
-    "build": "npx webpack --mode=production",
-    "eslint": "npx eslint src/."
+    "dev": "npx webpack serve --devtool source-map --env useTs=true",
+    "build": "npx webpack --mode=production --env useTs=true",
+    "build-js": "npx webpack --mode=production",
+    "eslint": "npx eslint src/**"
   },
   "license": "MIT",
   "dependencies": {

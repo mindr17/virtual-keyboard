@@ -1,10 +1,13 @@
 class Control<NodeType extends HTMLElement = HTMLElement> {
   public node: NodeType;
 
-  constructor(parentNode: HTMLElement | null, tagName?: string,
-    classNames?: string, content?: string) {
-
-    const elem = tagName ? document.createElement(tagName) 
+  constructor(
+    parentNode: HTMLElement | null,
+    tagName?: string,
+    classNames?: string,
+    content?: string,
+  ) {
+    const elem = tagName ? document.createElement(tagName)
       : document.createElement('div');
 
     if (classNames) {

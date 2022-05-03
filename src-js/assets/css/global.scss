@@ -1,24 +1,25 @@
+$path: './assets/fonts';
 /* -----FONTS--------------------------------------------------------------------- */
 @font-face {
   font-family: Arial;
   font-weight: 400;
   font-display: swap;
   src: local('Arial'),
-    url('./../fonts/ArialMT.woff') format('woff');
+    url($path + '/ArialMT.woff') format('woff');
 }
 @font-face {
   font-family: Georgia;
   font-weight: 400;
   font-display: swap;
   src: local('Georgia'),
-    url('./../fonts/Georgia.woff') format('woff');
+    url($path + '/Georgia.woff') format('woff');
 }
 @font-face {
   font-family: Georgia;
   font-weight: 700;
   font-display: swap;
   src: local('Georgia'),
-    url('./../fonts/georgiab.ttf') format('ttf');
+    url($path + '/georgiab.ttf') format('ttf');
 }
 @font-face {
   font-family: Georgia;
@@ -26,7 +27,7 @@
   font-style: italic;
   font-display: swap;
   src: local('Georgia'),
-    url('./../fonts/Georgia.woff') format('woff');
+    url($path + '/Georgia.woff') format('woff');
 }
 /* -----GENERAL------------------------------------------------------------------- */
 html {

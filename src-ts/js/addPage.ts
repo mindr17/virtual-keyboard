@@ -1,14 +1,20 @@
-import btnsDb from './btnsDb.json';
+import btnsDbJson from './btnsDb.json';
 import Control from './Control';
 import Btn from './Btn';
 
 const createPage = () => {
+  const btnsDb = JSON.parse(btnsDbJson);
+
   const { body } = document;
   const main = new Control(body, 'main', 'main');
   const header = new Control(main.node, 'header', 'header').node;
-  new Control(header, 'h1', 'header__title', 'RSS виртуальная клавиатура').node;
-  new Control(header, 'div', 'header__description',
-  'Создано для Windows. Переключение языка alt + shift').node;
+  const doNothing = (...args) => {
+    args.forEach(() => {
+    });
+  };
+  const h1 = new Control(header, 'h1', 'header__title', 'RSS виртуальная клавиатура').node;
+  const description = new Control(header, 'div', 'header__description', 'Создано для Windows. Переключение языка alt + shift').node;
+  doNothing(h1, description);
   const inputElem: any = new Control(main.node, 'textarea', 'input-wrapper').node;
   const keyboardWrapper = new Control(main.node, 'div', 'keyboard-wrapper').node;
 
@@ -28,27 +34,35 @@ const createPage = () => {
 
   class Keyboard implements IKeyBoard {
     keyboardElem: HTMLElement;
+
     btnsArr: Array<Btn>;
+
     pressedArr: Array<Btn>;
+
     shift: boolean;
+
     capsLock: boolean;
+
     control: boolean;
+
     alt: boolean;
+
     language: lang;
+
     inputElem: HTMLElement;
 
-    constructor(keyboardWrapper: HTMLElement, inputElem) {
+    constructor(wrapper: HTMLElement, inputElement) {
       this.capsLock = false;
       this.shift = false;
       this.alt = false;
       this.control = false;
-      this.language = "en";
+      this.language = 'en';
       if (!localStorage.getItem('virtualKeyboardLanguage')) {
         localStorage.setItem('virtualKeyboardLanguage', this.language);
       }
       this.pressedArr = [];
       this.btnsArr = [];
-      this.inputElem = inputElem;
+      this.inputElem = inputElement;
       this.keyboardElem = new Control(keyboardWrapper, 'div', 'keyboard').node;
       this.btnsArr = this.addBtns();
       this.updateBtns();
@@ -56,7 +70,7 @@ const createPage = () => {
     }
 
     private addBtns(): Array<Btn> {
-      let tempArr = [];
+      const tempArr = [];
       btnsDb.forEach((btnObj) => {
         const btn: any = new Btn(this.keyboardElem, btnObj);
         tempArr.push(btn);
@@ -81,7 +95,7 @@ const createPage = () => {
             this.keyDown(btn);
           }
         });
-      }
+      };
       window.onkeyup = (e) => {
         e.preventDefault();
         btnsArr.forEach((btn: Btn) => {
@@ -89,18 +103,15 @@ const createPage = () => {
             this.keyUp(btn);
           }
         });
-      }
+      };
     }
 
     private checkIfPressed(code: string) {
-      const pressedIndex = this.pressedArr.filter(obj => {
-        return obj.btnObj.code === code;
-      });
+      const pressedIndex = this.pressedArr.filter((obj) => obj.btnObj.code === code);
       if (pressedIndex.length > 0) {
         return true;
-      } else {
-        return false;
       }
+      return false;
     }
 
     private keyDown(btn: Btn) {
@@ -124,7 +135,7 @@ const createPage = () => {
       } else {
         this.updateBtns();
       }
-      this.print(inputElem, btn)
+      this.print(inputElem, btn);
     }
 
     private keyUp(btn: Btn) {
@@ -142,32 +153,32 @@ const createPage = () => {
       }
     }
 
-    private print(inputElem: HTMLInputElement, btn: Btn) {
-      let cursorIndex = inputElem.selectionEnd;
-      let oldText = inputElem.value;
+    // eslint-disable-next-line class-methods-use-this
+    private print(inputElement: HTMLInputElement, btn: Btn) {
+      let cursorIndex = inputElement.selectionEnd;
+      const oldText = inputElement.value;
       if (cursorIndex === 0) {
         cursorIndex = oldText.length;
       }
       let textBefore = oldText.substring(0, cursorIndex);
       let textAfter = oldText.substring(cursorIndex, oldText.length);
       let newText = '';
-  
       if (btn.btnObj.code === 'Backspace') {
         textBefore = textBefore.substring(0, textBefore.length - 1);
         newText = textBefore + textAfter;
-        cursorIndex--;
+        cursorIndex -= 1;
       } else if (btn.btnObj.code === 'Delete') {
         textAfter = textAfter.substring(1, textAfter.length);
         newText = textBefore + textAfter;
       } else if (btn.btnObj.code === 'Enter') {
-        newText = textBefore + '\n' + textAfter;
-        cursorIndex++;
+        newText = `${textBefore}\n${textAfter}`;
+        cursorIndex += 1;
       } else if (btn.btnObj.code === 'Tab') {
-        newText = textBefore + '    ' + textAfter;
+        newText = `${textBefore}    ${textAfter}`;
         cursorIndex += 4;
       } else if (!btn.btnObj.utility) {
         newText = textBefore + btn.char + textAfter;
-        cursorIndex++;
+        cursorIndex += 1;
       } else {
         newText = oldText;
       }
@@ -175,7 +186,7 @@ const createPage = () => {
       inputElem.value = newText;
       inputElem.setSelectionRange(cursorIndex, cursorIndex);
     }
-    
+
     private updateBtns() {
       this.language = localStorage.getItem('virtualKeyboardLanguage') as lang;
       this.btnsArr.forEach((btn) => {
@@ -184,6 +195,7 @@ const createPage = () => {
     }
   }
 
-  new Keyboard(keyboardWrapper, inputElem);
+  const keyboard = new Keyboard(keyboardWrapper, inputElem);
+  doNothing(keyboard);
 };
 export default createPage;

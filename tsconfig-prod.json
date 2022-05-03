@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2020",
     "target": "esnext",
     "sourceMap": false,
     "experimentalDecorators": true,
@@ -8,17 +8,12 @@
     "skipLibCheck": true,
     "outDir": "src-js/",
     "downlevelIteration": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node"
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "src-ts/**/*"
-  ],
-  "files": [
-    "src-ts/index.ts",
-    "src-ts/js/module.d.ts"
+    "src/**/*"
   ]
 }
