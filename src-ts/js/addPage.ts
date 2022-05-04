@@ -153,7 +153,6 @@ const createPage = () => {
       }
     }
 
-    // eslint-disable-next-line class-methods-use-this
     private print(inputElement: HTMLInputElement, btn: Btn) {
       let cursorIndex = inputElement.selectionEnd;
       const oldText = inputElement.value;
