@@ -4,20 +4,20 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = (args) => {
   const { useTs } = args;
-  let entry = '';
-  if (!useTs) {
-    entry = {
-      index: `./src/index.ts`,
+  let entryVar = '';
+  if (useTs) {
+    entryVar = {
+      index: './src-ts/index.ts',
     };
   } else {
-    entry = {
-      index: `./src-js/index.js`,
+    entryVar = {
+      index: './src/index.js',
     };
   }
-  
+
   return {
     mode: 'development',
-    entry: entry,
+    entry: entryVar,
     module: {
       rules: [
         {

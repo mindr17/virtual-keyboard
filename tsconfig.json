@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "outDir": "src-js/",
+    "outDir": "src",
     "downlevelIteration": true,
     "esModuleInterop": true,
     "moduleResolution": "node"

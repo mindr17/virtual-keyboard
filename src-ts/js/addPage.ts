@@ -135,7 +135,7 @@ const createPage = () => {
       } else {
         this.updateBtns();
       }
-      this.print(inputElem, btn);
+      this.print(btn);
     }
 
     private keyUp(btn: Btn) {
@@ -153,7 +153,8 @@ const createPage = () => {
       }
     }
 
-    private print(inputElement: HTMLInputElement, btn: Btn) {
+    private print(btn: Btn) {
+      const inputElement = this.inputElem as HTMLInputElement;
       let cursorIndex = inputElement.selectionEnd;
       const oldText = inputElement.value;
       if (cursorIndex === 0) {

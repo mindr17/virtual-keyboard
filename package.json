@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack serve --devtool source-map --open",
+    "start": "npx webpack serve --devtool source-map --env useTs=true --open",
     "dev": "npx webpack serve --devtool source-map --env useTs=true",
     "build": "npx webpack --mode=production --env useTs=true",
     "build-js": "npx webpack --mode=production",
-    "eslint": "npx eslint src/**"
+    "eslint": "npx eslint src/ --ext js"
   },
   "license": "MIT",
   "dependencies": {
