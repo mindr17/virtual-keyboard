@@ -137,8 +137,8 @@ const createPage = () => {
           }
         }
 
-        // eslint-disable-next-line class-methods-use-this
         print(inputElement, btn) {
+          this.inputElem.focus();
           let cursorIndex = inputElement.selectionEnd;
           const oldText = inputElement.value;
           if (cursorIndex === 0) {
@@ -158,7 +158,7 @@ const createPage = () => {
             newText = `${textBefore}\n${textAfter}`;
             cursorIndex += 1;
           } else if (btn.btnObj.code === 'Tab') {
-            newText = `${textBefore}    ${textAfter}`;
+            newText = `${textBefore}\t${textAfter}`;
             cursorIndex += 4;
           } else if (!btn.btnObj.utility) {
             newText = textBefore + btn.char + textAfter;
