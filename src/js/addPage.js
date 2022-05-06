@@ -1,8 +1,9 @@
-import btnsDb from './btnsDb.json';
+import btnsDbJson from './btnsDb.json';
 import Control from './Control';
 import Btn from './Btn';
 
 const createPage = () => {
+  const btnsDb = JSON.parse(btnsDbJson);
   const { body } = document;
   const main = new Control(body, 'main', 'main');
   const header = new Control(main.node, 'header', 'header').node;
