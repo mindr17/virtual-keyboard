@@ -158,7 +158,7 @@ const createPage = () => {
             newText = `${textBefore}\n${textAfter}`;
             cursorIndex += 1;
           } else if (btn.btnObj.code === 'Tab') {
-            newText = `${textBefore}\t${textAfter}`;
+            newText = `${textBefore}    ${textAfter}`;
             cursorIndex += 4;
           } else if (!btn.btnObj.utility) {
             newText = textBefore + btn.char + textAfter;
